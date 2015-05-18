@@ -36,14 +36,13 @@ object GetHadoopFile {
     
   }
   def main(args: Array[String]) {
-     val sparkConf = new SparkConf().setAppName("Log Analysis")
+     val sparkConf = new SparkConf()
+     
      val sc = new SparkContext(sparkConf)
+     
 //     val file = sc.textFile("hdfs://dpsjob101.dev.la.mezimedia.com:9000/logs/www.investopedia.com.access_log-20150320")
      val file = sc.parallelize(exampleApacheLogs)
-     println("aaaaa" + file.foreach { x => println(x) })
-     file.map { line => (line,1) }.collect().foreach{case (a,e)=>{
-       println(a)
-       println(e)
-       }}
+//     println("aaaaa" + file.foreach { x => println(x) })
+     file.map { line => myPrintln(line) }
   }
 }
